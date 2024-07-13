@@ -14,7 +14,6 @@ class App extends Component {
 
   handleCharacterSelection = (characterID) => {
     this.setState({selectedID: characterID})
-    console.log(this.state)
   }
 
   render() {

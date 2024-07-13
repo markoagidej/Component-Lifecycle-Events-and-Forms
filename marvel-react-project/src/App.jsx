@@ -1,13 +1,38 @@
 import './App.css'
 import CharacterList from './components/CharacterList';
+import CharacterDetail from './components/CharacterDetail';
+import { useState } from 'react';
+import { Component } from 'react';
 
-function App() {
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedID: null
+    };
+  }
 
-  return (
-    <div>
-      <CharacterList />
-    </div>
-  )
+  handleCharacterSelection = (characterID) => {
+    this.setState({selectedID: characterID})
+    console.log(this.state)
+  }
+
+  render() {
+    const { selectedID } = this.state
+
+    return (
+      <div className={"row"}>
+        <div className={"column"}>
+          <CharacterList onCharacterSelect={this.handleCharacterSelection}/>
+        </div>
+        <div className={"column"}>
+          {selectedID &&
+            <CharacterDetail characterId={selectedID}/>
+          }
+        </div>
+      </div>
+    )
+  }  
 }
 
 export default App
